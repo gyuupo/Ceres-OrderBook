@@ -1,0 +1,158 @@
+DROP DATABASE IF EXISTS Orderbook;
+CREATE DATABASE IF NOT EXISTS Orderbook DEFAULT CHARACTER SET utf8 ;
+USE Orderbook;
+
+-- -----------------------------------------------------
+-- Table `orderbook`.`order`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS order_details (
+  `orderId` INT NOT NULL AUTO_INCREMENT,
+  `size` INT NOT NULL COMMENT 'Number of stocks for order',
+  `side` TINYINT NOT NULL COMMENT '1 When is a buy order and 0 for a sell order',
+  `orderTime` DATETIME NOT NULL COMMENT 'Time of order placement',
+  `activeOrder` TINYINT NOT NULL DEFAULT 1 COMMENT '1 When order is active and 0 When order is inactive',
+  `offerPrice` DECIMAL(8,2) NOT NULL COMMENT 'Price for order',
+  `symbol` VARCHAR(45) NOT NULL COMMENT 'Symbol of stock in order',
+  PRIMARY KEY (`orderId`)
+);
+INSERT INTO order_details(orderId,size,side, orderTime,activeOrder,offerPrice,symbol)
+VALUES
+(1,120,1,"2023-01-01T12:00:00",1,111.45,"GOOG"),
+(2,75,1,"2023-01-01T12:00:01",1,111.45,"GOOG"),
+(3,500,1,"2023-01-01T12:00:02",1,111.4,"GOOG"),
+(4,10,1,"2023-01-01T12:00:03",1,575.37,"GOOG"),
+(5,10,1,"2023-01-01T12:00:04",1,111.36,"GOOG"),
+(6,8,1,"2023-01-01T12:00:05",1,111.26,"GOOG"),
+(7,2,1,"2023-01-01T12:00:06",1,111.25,"GOOG"),
+(8,30,1,"2023-01-01T12:00:07",1,111.2,"GOOG"),
+(9,100,1,"2023-01-01T12:00:08",1,111.2,"GOOG"),
+(10,22,1,"2023-01-01T12:00:09",1,111.12,"GOOG"),
+(11,0,0,"2023-01-01T12:00:10",0,111.45,"GOOG"),
+(12,0,0,"2023-01-01T12:00:11",0,111.45,"GOOG"),
+(13,100,0,"2023-01-01T12:00:12",1,111.45,"GOOG"),
+(14,100,0,"2023-01-01T12:00:13",1,111.45,"GOOG"),
+(15,100,0,"2023-01-01T12:00:14",1,111.74,"GOOG"),
+(16,100,0,"2023-01-01T12:00:15",1,111.8,"GOOG"),
+(17,100,0,"2023-01-01T12:00:16",1,111.85,"GOOG"),
+(18,100,0,"2023-01-01T12:00:17",1,111.85,"GOOG"),
+(19,100,0,"2023-01-01T12:00:18",1,111.86,"GOOG"),
+(20,22,0,"2023-01-01T12:00:19",1,111.87,"GOOG"),
+(21,120,1,"2023-01-01T12:00:20",1,111.45,"AMZN"),
+(22,75,1,"2023-01-01T12:00:21",1,111.45,"AMZN"),
+(23,500,1,"2023-01-01T12:00:22",1,111.4,"AMZN"),
+(24,10,1,"2023-01-01T12:00:23",1,110.37,"AMZN"),
+(25,10,1,"2023-01-01T12:00:24",1,111.36,"AMZN"),
+(26,8,1,"2023-01-01T12:00:25",1,111.26,"AMZN"),
+(27,2,1,"2023-01-01T12:00:26",1,111.25,"AMZN"),
+(28,30,1,"2023-01-01T12:00:27",1,111.2,"AMZN"),
+(29,100,1,"2023-01-01T12:00:28",1,111.2,"AMZN"),
+(30,22,1,"2023-01-01T12:00:29",1,111.12,"AMZN"),
+(31,0,0,"2023-01-01T12:00:30",0,111.45,"AMZN"),
+(32,0,0,"2023-01-01T12:00:31",0,111.45,"AMZN"),
+(33,100,0,"2023-01-01T12:00:32",1,111.45,"AMZN"),
+(34,100,0,"2023-01-01T12:00:33",1,111.45,"AMZN"),
+(35,100,0,"2023-01-01T12:00:34",1,111.74,"AMZN"),
+(36,100,0,"2023-01-01T12:00:35",1,111.8,"AMZN"),
+(37,100,0,"2023-01-01T12:00:36",1,111.85,"AMZN"),
+(38,100,0,"2023-01-01T12:00:37",1,111.85,"AMZN"),
+(39,100,0,"2023-01-01T12:00:38",1,111.86,"AMZN"),
+(40,22,0,"2023-01-01T12:00:39",1,111.87,"AMZN"),
+(41,120,1,"2023-01-01T12:00:40",1,111.45,"MSFT"),
+(42,75,1,"2023-01-01T12:00:41",1,111.45,"MSFT"),
+(43,500,1,"2023-01-01T12:00:42",1,111.4,"MSFT"),
+(44,10,1,"2023-01-01T12:00:43",1,575.37,"MSFT"),
+(45,10,1,"2023-01-01T12:00:44",1,111.36,"MSFT"),
+(46,8,1,"2023-01-01T12:00:45",1,111.26,"MSFT"),
+(47,2,1,"2023-01-01T12:00:46",1,111.25,"MSFT"),
+(48,30,1,"2023-01-01T12:00:47",1,111.2,"MSFT"),
+(49,100,1,"2023-01-01T12:00:48",1,111.2,"MSFT"),
+(50,22,1,"2023-01-01T12:00:49",1,111.12,"MSFT"),
+(51,0,0,"2023-01-01T12:00:50",0,111.45,"MSFT"),
+(52,0,0,"2023-01-01T12:00:51",0,111.45,"MSFT"),
+(53,100,0,"2023-01-01T12:00:52",1,111.45,"MSFT"),
+(54,100,0,"2023-01-01T12:00:53",1,111.45,"MSFT"),
+(55,100,0,"2023-01-01T12:00:54",1,111.74,"MSFT"),
+(56,100,0,"2023-01-01T12:00:55",1,111.8,"MSFT"),
+(57,100,0,"2023-01-01T12:00:56",1,111.85,"MSFT"),
+(58,100,0,"2023-01-01T12:00:57",1,111.85,"MSFT"),
+(59,100,0,"2023-01-01T12:00:58",1,111.86,"MSFT"),
+(60,22,0,"2023-01-01T12:00:59",1,111.87,"MSFT"),
+(61,120,1,"2023-01-01T12:01:00",1,111.45,"AMZN"),
+(62,75,1,"2023-01-01T12:01:01",1,111.45,"AMZN"),
+(63,500,1,"2023-01-01T12:01:02",1,111.4,"AMZN"),
+(64,10,1,"2023-01-01T12:01:03",1,111.37,"AMZN"),
+(65,10,1,"2023-01-01T12:01:04",1,111.36,"AMZN"),
+(67,2,1,"2023-01-01T12:01:06",1,111.25,"AMZN"),
+(68,30,1,"2023-01-01T12:01:07",1,111.2,"AMZN"),
+(69,100,1,"2023-01-01T12:01:08",1,111.2,"AMZN"),
+(71,0,0,"2023-01-01T12:01:10",0,111.45,"AMZN"),
+(72,0,0,"2023-01-01T12:01:11",0,111.45,"AMZN"),
+(73,100,0,"2023-01-01T12:01:12",1,111.45,"AMZN"),
+(74,100,0,"2023-01-01T12:01:13",1,111.45,"AMZN"),
+(75,100,0,"2023-01-01T12:01:14",1,111.74,"AMZN"),
+(76,100,0,"2023-01-01T12:01:15",1,111.8,"AMZN"),
+(77,100,0,"2023-01-01T12:01:16",1,111.85,"AMZN"),
+(78,100,0,"2023-01-01T12:01:17",1,111.85,"AMZN"),
+(79,100,0,"2023-01-01T12:01:18",1,111.86,"AMZN"),
+(80,22,0,"2023-01-01T12:01:19",1,111.87,"AMZN"),
+(81,120,1,"2023-01-01T12:01:20",1,111.45,"TWTR"),
+(82,75,1,"2023-01-01T12:01:21",1,111.45,"TWTR"),
+(83,500,1,"2023-01-01T12:01:22",1,111.4,"TWTR"),
+(84,10,1,"2023-01-01T12:01:23",1,111.37,"TWTR"),
+(85,10,1,"2023-01-01T12:01:24",1,111.36,"TWTR"),
+(86,8,1,"2023-01-01T12:01:25",1,111.26,"TWTR"),
+(87,2,1,"2023-01-01T12:01:26",1,111.25,"TWTR"),
+(88,30,1,"2023-01-01T12:01:27",1,111.2,"TWTR"),
+(89,100,1,"2023-01-01T12:01:28",1,111.2,"TWTR"),
+(90,22,1,"2023-01-01T12:01:29",1,111.12,"TWTR"),
+(91,0,0,"2023-01-01T12:01:30",0,111.45,"TWTR"),
+(92,0,0,"2023-01-01T12:01:31",0,111.45,"TWTR"),
+(93,100,0,"2023-01-01T12:01:32",1,111.45,"TWTR"),
+(94,100,0,"2023-01-01T12:01:33",1,111.45,"TWTR"),
+(95,100,0,"2023-01-01T12:01:34",1,111.74,"TWTR"),
+(96,100,0,"2023-01-01T12:01:35",1,111.8,"TWTR"),
+(97,100,0,"2023-01-01T12:01:36",1,111.85,"TWTR"),
+(98,100,0,"2023-01-01T12:01:37",1,111.85,"TWTR"),
+(99,100,0,"2023-01-01T12:01:38",1,111.86,"TWTR"),
+(100,22,0,"2023-01-01T12:01:39",1,111.87,"TWTR");
+
+
+
+
+
+-- -----------------------------------------------------
+-- Table `orderbook`.`transaction`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS transaction_details (
+  `transactionId` INT NOT NULL AUTO_INCREMENT,
+  `buyOrderId` INT NOT NULL COMMENT 'Id for buy order',
+  `sellOrderId` INT NOT NULL COMMENT 'Id for sell order',
+  `finalTime` TIMESTAMP(6) NOT NULL COMMENT 'Time transaction occurs',
+  `finalPrice` DECIMAL(8,2) NOT NULL COMMENT 'final price of transaction',
+  `amount` INT NOT NULL COMMENT 'amount of stocks traded during transaction',
+  `finalSymbol` VARCHAR(45) NOT NULL COMMENT 'symbol of stock being traded during transaction',
+  INDEX `fk_order_has_order_order1_idx` (`sellOrderId` ASC) VISIBLE,
+  INDEX `fk_order_has_order_order_idx` (`buyOrderId` ASC) VISIBLE,
+  PRIMARY KEY (`transactionId`),
+  CONSTRAINT `fk_order_has_buy_order`
+    FOREIGN KEY (`buyOrderId`)
+    REFERENCES `orderbook`.`order_details` (`orderId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_has_sell_order`
+    FOREIGN KEY (`sellOrderId`)
+    REFERENCES `orderbook`.`order_details` (`orderId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+-- It ensures that you cannot delete a row from the "order" table if it is still referenced as a sellOrderId in the 
+-- transaction table, db will raise an error
+INSERT INTO transaction_details(transactionId,buyOrderId,sellOrderId,finalTime,finalPrice,amount,finalSymbol)
+VALUES
+(1,1,11,"2020-09-14 15:30:45.123456",111.45,80, "GOOG"),
+(2,1,12,"2020-09-14 15:30:46.123456",111.45,100,"GOOG");
+
+select *  from transaction_details;
+select* from order_details;
