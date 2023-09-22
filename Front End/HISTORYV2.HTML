@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Order Trader</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <!-- Dropdown for Orderbook -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        View an Orderbook
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                    </div>
+                </li>
+                <!-- End dropdown -->
+
+                <!-- Dropdown for Trade History -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        View Trade History
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                    </div>
+                </li>
+                <!-- End dropdown -->
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="orderbook">
+                <input class="form-control mr-sm-2" pattern="[a-zA-Z]{1,45}" oninvalid="this.setCustomValidity('Input must be letters in length between 1-45.')" type="search" placeholder="Search" aria-label="Search" name="symbol">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search a Symbol</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Main Body -->
+    <div class="container-fluid">
+        <div class="row m-4 d-flex justify-content-center">
+            <div class="col-8">
+                <main class="card rounded-0">
+                    <header class="card-header">
+                        <h3 class="text-center">Trade History for <span></span></h3>
+                    </header>
+                    <div class="card-body">
+                        <div class=" mb-4 d-flex justify-content-between">
+                            <form>
+                                <input type="hidden" name="symbol" />
+                                <button class="btn btn-primary btn-sm" formaction="/orderbook">Orderbook for <span></span></button>
+                            </form>
+                            <form class="form-inline" action="tradehistory" method="GET">
+                                <div class="form-group">
+                                    <div class="col-9">
+                                        <input type="date" name="dateString" id="dateString" class="form-control"/>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="symbol" />
+                                <button type="submit" class="btn btn-primary btn-sm">Find for Date</button>
+                            </form>
+                        </div>
+                        <!-- Table for Orderbook -->
+                        <table class="table">
+                            <caption>Trade History on <span></span></caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="font-weight-bold">Timestamp</th>
+                                    <th scope="col" class="font-weight-bold">Price</th>
+                                    <th scope="col" class="font-weight-bold">Size</th>
+                                </tr>
+                            </thead>
+                            <!-- Entries -->
+                            <tbody>
+                                <tr>
+                                    <td>Transaction Time</td>
+                                    <td>Transaction Price</td>
+                                    <td>Transaction Size</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div
+
+                    
